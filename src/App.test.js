@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react'
-import App from './App'
+import App, { replaceCamelWithSpaces } from './App'
 
 // test('renders learn react link', () => {
 //   render(<App />)
@@ -73,4 +73,18 @@ test('button changes and restore backround color on disabled and checked', () =>
   fireEvent.click(checkbox)
   expect(colorButton).toBeEnabled()
   expect(colorButton).toHaveStyle({ backgroundColor: 'blue' })
+})
+
+describe('spaces before camel-case capital letters', () => {
+  test('should work for no inner capital letters', () => {
+    expect(replaceCamelWithSpaces('Red')).toBe('Red')
+  })
+
+  test('should work for one inner capital letter', () => {
+    expect(replaceCamelWithSpaces('MidnightBlue')).toBe('Midnight Blue')
+  })
+
+  test('should work for multiple capital letters', () => {
+    expect(replaceCamelWithSpaces('MediumVioletRed')).toBe('Medium Violet Red')
+  })
 })

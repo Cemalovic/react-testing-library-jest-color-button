@@ -1,6 +1,13 @@
 import { useState } from 'react'
 import './App.css'
 
+// replace(/\B(A-Z)\B/g, ' $1') znaci:
+// ako nadjes veliko slovo unutar reci -> '/\B([A-Z])\B/', cak i vise puta -> 'g' (uradi to svaki put kad ga nadjes) a zelim da ga zamenis, sa bilo kojim slovom koji nadjes, da mu prethodi razmak -> ' $1'
+
+export function replaceCamelWithSpaces(colorName) {
+  return colorName.replace(/\B([A-Z])\B/g, ' $1')
+}
+
 function App() {
   const [buttonColor, setButtonColor] = useState('red')
   const newButtonColor = buttonColor === 'red' ? 'blue' : 'red'
